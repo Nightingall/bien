@@ -3,9 +3,14 @@
 
 <div class="filters">
   <%= link_to "All Prices", root_path %>
-  <%= link_to "£", root_path(price:1) %>
-  <%= link_to "££", root_path(price:2) %>
-  <%= link_to "£££", root_path(price:3) %>
+  <%= link_to "£", root_path(price:1, cuisine: @cuisine) %>
+  <%= link_to "££", root_path(price:2, cuisine: @cuisine) %>
+  <%= link_to "£££", root_path(price:3, cuisine: @cuisine) %>
+
+  <%= link_to "Indian", root_path(cuisine: "Indian", price: @price) %>
+  <%= link_to "Mexican", root_path(cuisine: "Mexican", price: @price) %>
+  <%= link_to "American", root_path(cuisine: "American", price: @price) %>
+  <%= link_to "Italian", root_path(cuisine: "Italian", price: @price) %>
 </div>
 
 <% @reviews.each do |review| %>

@@ -2,13 +2,17 @@ class ReviewsController < ApplicationController
 
   def index
     @price = params[:price]
+    @cuisine = params[:cuisine]
+
+    @reviews = Review.all
 
     if @price.present?
-      @reviews = Review.where(price: @price)
-    else
-      @reviews = Review.all
+      @reviews = @reviews.where(price: @price)
     end
 
+    if @cuisine.present?
+      @reviews = @reviews.where(cuisine: @cuisine)
+    end
   end
 
   def new
