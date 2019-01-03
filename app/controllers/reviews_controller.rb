@@ -4,7 +4,6 @@ class ReviewsController < ApplicationController
     @reviews = Review.all
   end
 
-
   def new
     @review = Review.new
   end
@@ -38,8 +37,10 @@ class ReviewsController < ApplicationController
     redirect_to review_path(@review)
   end
 
+  private
+
   def form_params
-    params.require(:review).permit(:title, :body, :score)
+    params.require(:review).permit(:title, :body, :score, :restaurant)
   end
 end
 
