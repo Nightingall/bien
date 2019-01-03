@@ -1,0 +1,17 @@
+<p>Individual Review</p>
+
+
+<div class="score">
+  <%= @review.score %> / 10
+</div>
+
+
+<div class="body">
+  <%= simple_format @review.body %>
+</div>
+
+
+<dev class="actions">
+  <%= link_to "Delete this reivew", review_path(@review), method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= link_to "Edit this review", edit_review_path(@review) %>
+</dev>

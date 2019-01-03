@@ -10,7 +10,19 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
+    <header>
+      <h1>
+        <%= link_to root_path do  %>
+        <%= image_tag "bien-logo.svg" %>
+      <% end %>
+      </h1>
+      <h2>The Best Restaurants in the world</h2>
+      <nav>
+        <%= link_to "Add a Review", new_review_path %>
+      </nav>
+    </header>
     <%= yield %>
+    <h3>Copyright @nightingall 2019</h3>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
