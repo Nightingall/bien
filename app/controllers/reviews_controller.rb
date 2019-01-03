@@ -11,8 +11,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(form_params)
-    @review.save
-    redirect_to root_path
+    if @review.save
+      redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def show
@@ -34,7 +37,6 @@ class ReviewsController < ApplicationController
     @review.update(form_params)
     redirect_to review_path(@review)
   end
-
 
   def form_params
     params.require(:review).permit(:title, :body, :score)
