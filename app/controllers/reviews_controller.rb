@@ -1,7 +1,14 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @price = params[:price]
+
+    if @price.present?
+      @reviews = Review.where(price: @price)
+    else
+      @reviews = Review.all
+    end
+
   end
 
   def new
@@ -40,7 +47,7 @@ class ReviewsController < ApplicationController
   private
 
   def form_params
-    params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance)
+    params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :price, :cuisine)
   end
 end
 

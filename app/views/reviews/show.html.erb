@@ -13,6 +13,18 @@
   </div>
 <% end %>
 
+<% if @review.price.present? %>
+  <div class="price">
+    Price: <%= @review.price%>
+  </div>
+<% end %>
+
+<% if @review.cuisine.present? %>
+  <div class="cusine">
+    Cusine: <%= @review.cuisine %>
+  </div>
+<% end %>
+
 
 <div class="body">
   <%= simple_format @review.body %>
@@ -20,6 +32,6 @@
 
 
 <dev class="actions">
-  <%= link_to "Delete this reivew", review_path(@review), method: :delete, data: {confirm: "Are you sure?"} %>
+  <%= link_to "Delete this review", review_path(@review), method: :delete, data: {confirm: "Are you sure?"} %>
   <%= link_to "Edit this review", edit_review_path(@review) %>
 </dev>
