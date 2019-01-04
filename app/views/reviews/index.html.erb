@@ -12,7 +12,7 @@
   <div>
   <%= active_link_to "Indian", root_path(cuisine: "Indian", price: @price, location: @location), active: { cuisine: "Indian"}  %>
   <%= active_link_to "Mexican", root_path(cuisine: "Mexican", price: @price, location: @location), active: { cuisine: "Mexican"} %>
-  <%= active_link_to "American", root_path(cuisine: "American", price: @price, location: @location), active: { cuisine: "America"} %>
+  <%= active_link_to "American", root_path(cuisine: "American", price: @price, location: @location), active: { cuisine: "American"} %>
   <%= active_link_to "Italian", root_path(cuisine: "Italian", price: @price, location: @location), active: { cuisine: "Italian"} %>
   </div>
 
@@ -28,6 +28,10 @@
 
 <% @reviews.each do |review| %>
   <div class="review">
-    <p><%= link_to review.title, review_path(review) %></p>
+    <p><%= link_to review_path(review) do %></p>
+      <h2><%= review.title %></h2>
+      <p><%= review.cuisine %>
+      <%= pluralize review.comments.count, "comment" %></p>
+    <% end %>
   </div>
 <% end %>
