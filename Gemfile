@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'geocoder'
 gem 'active_link_to'
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
