@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_action :check_login, except: [:index, :show]
+
   def index
     @price = params[:price]
     @cuisine = params[:cuisine]
@@ -26,6 +28,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(form_params)
+
+    @review.user = @current_user
+
     if @review.save
       redirect_to root_path
     else
@@ -39,18 +44,31 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
+    if @review.user  == @current_user
+      @review.destroy
+    end
     redirect_to root_path
   end
 
   def edit
     @review = Review.find(params[:id])
+
+    if @review.user != @current_user
+      redirect_to root_path
+    end
   end
 
   def update
     @review = Review.find(params[:id])
-    @review.update(form_params)
-    redirect_to review_path(@review)
+    if @review.user != @current_user
+      redirect_to root_path
+    else
+      if @review.update(form_params)
+      redirect_to review_path(@review)
+      else
+      render "edit"
+      end
+    end
   end
 
   private
