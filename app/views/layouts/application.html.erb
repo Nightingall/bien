@@ -17,7 +17,8 @@
         <% end %>
       </h1>
       <nav>
-        <% if session[:user_id].present? %>
+        <% if is_logged_in? %>
+           <%= @current_user.username %>
            <%= link_to "Add a Review", new_review_path %>
            <%= link_to "Log Out", session_path, method: :delete %>
         <% else %>

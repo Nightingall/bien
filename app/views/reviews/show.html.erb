@@ -7,6 +7,15 @@
   <%= @review.score %> / 10
 </div>
 
+<div class="user">
+  Posted by
+  <% if @review.user.present? %>
+    <%= link_to @review.user.username, user_path(@review.user) %>
+  <% else %>
+    anonymous
+  <% end %>
+</div>
+
 <% if @review.ambiance.present? %>
   <div class="ambiance">
     Ambiance: <%= @review.ambiance %>
@@ -36,11 +45,12 @@
   <%= simple_format @review.body %>
 </div>
 
-
-<dev class="actions">
-  <%= link_to "Delete this review", review_path(@review), method: :delete, data: {confirm: "Are you sure?"} %>
-  <%= link_to "Edit this review", edit_review_path(@review) %>
-</dev>
+<% if @review.user == @current_user %>
+  <dev class="actions">
+    <%= link_to "Delete this review", review_path(@review), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to "Edit this review", edit_review_path(@review) %>
+  </dev>
+<% end %>
 
 
 <h3>Comments</h3>
@@ -48,7 +58,11 @@
 <% @review.comments.order("created_at desc").each do |comment| %>
   <div class="comment">
     <%= simple_format comment.body %>
-
+    <% if comment.user.present? %>
+      <p class ="posted"> Posted by <%= link_to comment.user.username, user_path(comment.user) %> </p>
+    <% else %>
+      anoymous
+    <% end %>
     <p class="posted">Posted <%= time_ago_in_words comment.created_at %> ago</p>
   </div>
 <% end %>
