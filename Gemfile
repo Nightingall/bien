@@ -21,6 +21,14 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'carrierwave', '~> 1.2'
 gem 'mini_magick'
 
+
+# Plus integrations with:
+gem 'activeadmin'
+gem 'devise'
+gem 'cancan' # or cancancan
+gem 'draper'
+gem 'pundit'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
