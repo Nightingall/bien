@@ -21,4 +21,11 @@ class ApplicationController < ActionController::Base
   def is_logged_in?
     session[:user_id].present?
   end
+
+  def check_admin
+    @user = find_current_user
+    unless @user.present && @user.is_admin?
+      redirect_to root_path
+    end
+  end
 end
