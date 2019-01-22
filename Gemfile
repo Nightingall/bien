@@ -18,6 +18,8 @@ gem 'webpacker'
 gem 'geocoder'
 gem 'active_link_to'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'carrierwave', '~> 1.2'
+gem 'mini_magick'
 
 
 # Plus integrations with:
